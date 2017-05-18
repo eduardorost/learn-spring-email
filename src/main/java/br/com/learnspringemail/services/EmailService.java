@@ -16,7 +16,6 @@ public class EmailService {
     public void send(Email email) {
         MimeMessagePreparator messagePreparator = mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage) {{
-//                setFrom(from);
                 setTo(email.getTo());
                 setSubject(email.getSubject());
                 setText(email.getBody(), email.isHthml());
