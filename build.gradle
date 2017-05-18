@@ -1,0 +1,39 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.1.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+	baseName = 'learn-spring-email'
+	version = '0.0.1-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile("org.springframework.boot:spring-boot-starter-mail")
+
+	compile('io.springfox:springfox-swagger2:2.6.1')
+	compile('io.springfox:springfox-swagger-ui:2.6.1')
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
